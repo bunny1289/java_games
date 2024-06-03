@@ -1,46 +1,61 @@
-import java.util.HashSet;
 import java.util.Scanner;
 
-class user{
-
-    public void inp(String len){
-
-
-        if(len.length()!=4) {
-            Scanner myObj = new Scanner(System.in);
-            System.out.println("enter num with len of 4");
-            len = myObj.nextLine();
-        }
-
-
-            HashSet<Character> set = new HashSet<>();
-
-            for (char digit : len.toCharArray()){
-                if(!set.add(digit)){
-                    Scanner myObj = new Scanner(System.in);
-                    System.out.println("enter unique");
-                    len = myObj.nextLine();
-                }
-
-
-
-
-            }
-        System.out.println(len);
-
-
-
-    }
-}
-
 public class userguess {
-    public static void main(String[] args) {
-        Scanner user = new Scanner(System.in);
-        System.out.println("Enter num");
-        String z = user.nextLine();
 
-        user u = new user();
-        u.inp(z);
+    public int[] guess() {
+        int[] list = new int[4];
+        try (Scanner obj = new Scanner(System.in)) {
+            while (true) {
+                boolean test = true;
+                System.out.print("Enter your guess : ");
+                int x = obj.nextInt();
+                obj.nextLine();String temp = x + "";
+                if (temp.length() > 4) {
+                    test = true;
+                } else {
+                    for (int i = 0; i < 4; i++) {
+                        int y = x % 10;
+                        x = x / 10;
+                        list[3 - i] = y;
+                    }
 
+                    for (int i = 0; i < 4; i++) {
+                        if (list[i] == 0) {
+                            test = true;
+                            break;
+                        }
+                        for (int j = i + 1; j < 4; j++) {
+                            if (list[i] == list[j]) {
+                                test = true;
+                                break;
+                            } else {
+                                test = false;
+                            }
+                        }
+                        if (test)
+                            break;
+                    }
+                }
+                if (!test)
+                    break;
+                else
+                    System.out.println("Your guess is invalid!!!");
+            }
+        }
+        int r = list[0];
+        for (int i = 1; i < 4; i++) {
+            r = r * 10 + list[i];
+        }
+        return list;
     }
+
+    // public static void main(String[] args) {
+    // userguess obj = new userguess();
+    // int [] res = obj.guess();
+    // int x = res[0];
+    // for (int i = 1; i < 4; i++) {
+    // x = x*10 + res[i];
+    // }
+    // System.out.println(x);
+    // }
 }
