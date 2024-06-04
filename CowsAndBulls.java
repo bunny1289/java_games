@@ -35,9 +35,9 @@ public class CowsAndBulls {
             }
             c++;
             if (bulls==4){
-                System.out.println("-------------------------");
+                System.out.println("----------------------------------------");
                 System.out.println("Your guessed the number in "+c+" chances!!!");
-                System.out.println("-------------------------");
+                System.out.println("----------------------------------------");
                 break;
             }
             System.out.println("---------");
